@@ -1,4 +1,4 @@
-package com.springboot.demo.restwebservice.demo;
+package com.springboot.demo.restwebservice.demo.helloWorld;
 
 public class HelloWorldBean {
     private String message;
