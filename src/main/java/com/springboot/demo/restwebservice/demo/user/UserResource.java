@@ -1,6 +1,8 @@
 package com.springboot.demo.restwebservice.demo.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -20,13 +22,18 @@ public class UserResource {
     }
 
     @GetMapping("/users/{id}")
-    public User retrieverUserById(@PathVariable int id) {
+    public EntityModel<User> retrieverUserById(@PathVariable int id) {
         User user = userDAO.findOne(id);
         if (user == null) {
             throw new UserNotFoundException("id-" + id);
         }
-        return user;
 
+        EntityModel<User> resource = EntityModel.of(user);
+        WebMvcLinkBuilder linkTo = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).retrieveAllUsers());
+
+        resource.add(linkTo.withRel("all-users"));
+
+        return resource;
     }
 
     @PostMapping("/users")
