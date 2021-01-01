@@ -14,8 +14,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 @EnableSwagger2
 public class SwaggerConfig {
 
-    public static final Contact DEFAULT_CONTACT = new Contact("", "", "");
-    public static final ApiInfo DEFAULT_API_INFO = new ApiInfo();
+    public static final Contact DEFAULT_CONTACT = new Contact("Peter", "", "peter@doom.com");
+    public static final ApiInfo DEFAULT_API_INFO = new ApiInfo("DemoAppForBoot", "Api Documentation", "1.0", DEFAULT_CONTACT);
 
     @Bean
     public Docket api() {
