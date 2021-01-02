@@ -1,9 +1,12 @@
 package com.springboot.demo.restwebservice.demo.user;
 
+import io.swagger.annotations.ApiModel;
+
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
+@ApiModel(description = "Demo description for the user")
 public class User {
 
     private Integer id;
@@ -13,10 +16,6 @@ public class User {
 
     @Past
     private Date birthDate;
-
-    protected User() {
-
-    }
 
     public User(Integer id, String name, Date birthDate) {
         this.id = id;
