@@ -1,2 +1,3 @@
 # spring-rest-webservice
 Demo Spring App. 
+Using JPA(Hybernate) and other technologies
