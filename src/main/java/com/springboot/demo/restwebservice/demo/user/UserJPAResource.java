@@ -26,7 +26,7 @@ public class UserJPAResource {
 
     @GetMapping("/jpa/users/{id}")
     public EntityModel<User> retrieverUserById(@PathVariable int id) {
-        User user = userDAO.fin(id);
+        User user = userDAO.findOne(id);
         if (user == null) {
             throw new UserNotFoundException("id-" + id);
         }
