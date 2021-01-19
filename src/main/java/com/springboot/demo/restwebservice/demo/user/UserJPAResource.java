@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserJPAResource {
@@ -26,12 +27,13 @@ public class UserJPAResource {
 
     @GetMapping("/jpa/users/{id}")
     public EntityModel<User> retrieverUserById(@PathVariable int id) {
-        User user = userDAO.findOne(id);
-        if (user == null) {
+        Optional<User> user = userRepository.findById(id);
+
+        if (user.isEmpty()) {
             throw new UserNotFoundException("id-" + id);
         }
 
-        EntityModel<User> resource = EntityModel.of(user);
+        EntityModel<User> resource = EntityModel.of(user.get());
         WebMvcLinkBuilder linkTo = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).retrieveAllUsers());
 
         resource.add(linkTo.withRel("all-users"));
