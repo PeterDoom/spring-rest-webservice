@@ -1,6 +1,7 @@
 package com.springboot.demo.restwebservice.demo.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +40,16 @@ public class UserJPAResource {
         resource.add(linkTo.withRel("all-users"));
 
         return resource;
+    }
+
+    @GetMapping("/jpa/users/{id}/posts")
+    public List<Post> retrieveAllUsers(@PathVariable int id) {
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if (userOptional.isEmpty()) {
+            throw new ResourceNotFoundException();
+        }
+        return userOptional.get().getPosts();
     }
 
     @PostMapping("/jpa/users")
