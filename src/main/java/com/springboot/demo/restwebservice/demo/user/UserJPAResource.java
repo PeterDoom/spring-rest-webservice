@@ -79,8 +79,5 @@ public class UserJPAResource {
 
         User user = userOptional.get();
 
-
-
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand()
     }
 }
