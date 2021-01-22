@@ -69,4 +69,18 @@ public class UserJPAResource {
         userRepository.deleteById(id);
     }
 
+    @PostMapping("/jpa/users/{id}/posts")
+    public ResponseEntity<Object> createPost(@PathVariable int id){
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if (userOptional.isEmpty()) {
+            throw new ResourceNotFoundException();
+        }
+
+        User user = userOptional.get();
+
+
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand()
+    }
 }
