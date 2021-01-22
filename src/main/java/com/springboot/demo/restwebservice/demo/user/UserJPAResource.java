@@ -83,7 +83,7 @@ public class UserJPAResource {
 
         post.setUser(user);
         postRepository.save(post);
-
+        // TODO fix bug with inproper saving
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
