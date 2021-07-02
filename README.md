@@ -6,8 +6,10 @@ Using JPA(Hybernate) and other technologies
 
 ### POST Method(s): 
 For user creation -> /jpa/users
+
 For Posts -> /jpa/user/{id}/posts
 
 ## GET Method(s):
 For users -> /jps/users
+
 For user's posts -> /jpa/users/{id}
